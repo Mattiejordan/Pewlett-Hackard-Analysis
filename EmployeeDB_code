@@ -39,3 +39,61 @@ emp_no varchar pk  fk - Employees.emp_no fk - Titles.emp_no
 title int pk
 from_date date pk
 to_date date
+
+
+-- corrected version below
+Departments
+-
+dept_no varchar pk
+dept_name varchar
+
+Employees
+-
+emp_no pk 
+birth_date date
+first_name varchar
+last_name varchar
+gender varchar
+hire_date date
+
+Managers
+-
+dept_no varchar fk - Departments.dept_no
+emp_no int fk - Employees.emp_no
+from_date date
+to_date date
+
+Dept_Emp
+-
+dept_no varchar fk - Departments.dept_no
+emp_no int fk  - Employees.emp_no
+from_date date
+to_date date
+
+Salaries
+-
+emp_no int fk - Employees.emp_no
+salary int
+from_date date
+to_date date
+
+Titles
+-
+emp_no varchar  fk - Employees.emp_no
+title int pk
+from_date date
+to_date date
+
+retirement_info
+-
+emp_no varchar fk - Employees.emp_no
+
+retiree_salaries
+-
+emp_no varchar fk - Employees.emp_no
+first_name varchar fk - Employees.first_name
+last_name varchar fk - Employees.last_name
+gender varchar fk - Employees.gender
+to-date date fk - Salaries.to_date
+salary int fk - Salaries.salary
+
