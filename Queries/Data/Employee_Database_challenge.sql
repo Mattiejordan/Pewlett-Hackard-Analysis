@@ -52,7 +52,7 @@ ORDER BY emp_no;
 -- Compare to number of mentorship eligible employees
 
 
--- Silver tsumani
+-- Silver tsumani (age 60-64)
 SELECT COUNT(DISTINCT e.emp_no) -- first_name, last_name, title, ti.from_date, ti.to_date
 --INTO retirement_tsunami
 FROM employees as e
@@ -62,3 +62,29 @@ WHERE (e.birth_date BETWEEN '1956-01-01' AND '1960-12-31')
     AND (ti.to_date = '9999-01-01')
 --ORDER BY e.emp_no;
 
+--Count is 92347 employees expected to retire soon
+
+
+-- are there enough mentors available?
+SELECT COUNT (DISTINCT emp_no)
+INTO mentorship_eligibility_count
+from mentorship_eligibility
+-- count 1549
+
+
+-- expand mentorship eligibility to a 15 year range instead of one year (age 45 to 60)
+SELECT DISTINCT ON (e.emp_no) e.emp_no, e.first_name, e.last_name, e.birth_date, de.from_date, de.to_date, t.title
+INTO mentorship_expanded
+from employees as e
+INNER JOIN dept_emp as de
+ON (e.emp_no = de.emp_no)
+INNER JOIN titles as t
+ON (e.emp_no = t.emp_no)
+WHERE (e.birth_date BETWEEN '1960-01-01' AND '1975-12-31')
+    AND (de.to_date = '9999-01-01')
+ORDER BY emp_no;
+
+SELECT COUNT (DISTINCT emp_no)
+INTO mentorship_expanded_count
+FROM mentorship_expanded
+-- count 93756
