@@ -5,8 +5,9 @@ FROM employees as e
 INNER JOIN titles as ti 
 ON (e.emp_no = ti.emp_no)
 WHERE (e.birth_date BETWEEN '1952-01-01' AND '1955-12-31')
+    AND (ti.to_date = '9999-01-01')
 ORDER BY e.emp_no;
-
+-- age 68 to 65
 
 -- Use Dictinct with Orderby to remove duplicate rows
 SELECT DISTINCT ON (emp_no) emp_no,
@@ -18,13 +19,13 @@ INTO unique_titles
 FROM retirement_titles
 ORDER BY emp_no, to_date DESC;
 
--- employees about to reitre by job title
+-- employees about to retire by job title
 SELECT title, COUNT (title)
 INTO retiring_titles
 from unique_titles
 GROUP BY title
 ORDER BY title DESC;
-
+-- about 90,000
 
 -- Deliverable 2 Mentorship Eligibility
 -- SELECT DISTINCT ON (emp_no) e.emp_no, first_name, last_name, birth_date, from_date, to_date, --title
