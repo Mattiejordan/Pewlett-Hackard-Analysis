@@ -25,7 +25,7 @@ INTO retiring_titles
 from unique_titles
 GROUP BY title
 ORDER BY title DESC;
--- about 90,000
+-- about 72,458
 
 -- Deliverable 2 Mentorship Eligibility
 -- SELECT DISTINCT ON (emp_no) e.emp_no, first_name, last_name, birth_date, from_date, to_date, --title
