@@ -5,7 +5,7 @@ FROM employees as e
 INNER JOIN titles as ti 
 ON (e.emp_no = ti.emp_no)
 WHERE (e.birth_date BETWEEN '1952-01-01' AND '1955-12-31')
-    AND (ti.to_date = '9999-01-01')
+--    AND (ti.to_date = '9999-01-01')
 ORDER BY e.emp_no;
 -- age 68 to 65
 
@@ -25,7 +25,7 @@ INTO retiring_titles
 from unique_titles
 GROUP BY title
 ORDER BY title DESC;
--- about 72,458
+-- about 90,398
 
 -- Deliverable 2 Mentorship Eligibility
 -- SELECT DISTINCT ON (emp_no) e.emp_no, first_name, last_name, birth_date, from_date, to_date, --title
